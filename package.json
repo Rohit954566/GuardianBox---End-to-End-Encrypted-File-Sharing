@@ -1,0 +1,29 @@
+{
+  "name": "guardianbox",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Zero-Knowledge End-to-End Encrypted File Sharing Service",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "server": "node --watch server/index.js",
+    "client": "npm --prefix client run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "npm --prefix client run build",
+    "test": "node --test tests/crypto.test.js"
+  },
+  "keywords": [
+    "e2ee",
+    "end-to-end-encryption",
+    "web-crypto-api",
+    "aes-gcm",
+    "zero-knowledge",
+    "file-sharing",
+    "cybersecurity"
+  ],
+  "author": "Rohit",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
