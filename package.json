@@ -21,7 +21,7 @@
     "file-sharing",
     "cybersecurity"
   ],
-  "author": "Rohit",
+  "author": "Rohit Somase",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^9.1.2"

@@ -1,7 +1,7 @@
 # GuardianBox — Zero-Knowledge End-to-End Encrypted File Sharing
 
 > **Persevex Cybersecurity Engineering Internship Project**  
-> **Author:** Rohit (Security Software Engineer Intern)  
+> **Author:** Rohit Somase (Security Software Engineer Intern)  
 > **Domain:** Applied Cryptography & Secure Distributed Systems  
 > **Core Primitives:** Web Crypto API, AES-256-GCM, PBKDF2, RFC 3986 URI Fragments, AWS S3 / Object Storage  
 

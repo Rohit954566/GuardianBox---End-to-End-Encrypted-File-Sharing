@@ -70,7 +70,7 @@ export default function ServerInspector({ inspectFileId }) {
       </div>
 
       {/* Query Bar */}
-      <div className="glass-panel p-6 space-y-4">
+      <div className="glass-panel glass-panel-glow p-6 space-y-4 border-cyan-500/25">
         <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
           Enter File ID to Audit Server Storage:
         </label>
@@ -80,7 +80,7 @@ export default function ServerInspector({ inspectFileId }) {
             placeholder="e.g. gb_..."
             value={fileIdInput}
             onChange={(e) => setFileIdInput(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-cyan-300 font-mono focus:outline-none focus:border-cyan-400"
+            className="w-full bg-midnight-900/90 border border-cyan-950/60 rounded-xl px-4 py-2.5 text-sm text-cyan-300 font-mono focus:outline-none focus:border-cyan-400 transition-all shadow-inner"
           />
           <button
             onClick={() => runInspection()}
@@ -103,38 +103,38 @@ export default function ServerInspector({ inspectFileId }) {
         <div className="space-y-6 animate-fadeIn">
           {/* Storage & Cryptographic Metadata */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="glass-panel p-4 space-y-1">
-              <span className="text-slate-500 text-xs flex items-center gap-1.5">
+            <div className="glass-panel p-4 space-y-1 border-cyan-950/40">
+              <span className="text-slate-400 text-xs flex items-center gap-1.5">
                 <Server className="w-3.5 h-3.5 text-cyan-400" />
                 Storage Provider
               </span>
               <p className="text-sm font-semibold text-slate-200">{inspectionData.storageProvider}</p>
-              <span className="text-[10px] text-slate-400 font-mono">Key: {inspectionData.storageKey}</span>
+              <span className="text-[10px] text-slate-400 font-mono truncate block">Key: {inspectionData.storageKey}</span>
             </div>
 
-            <div className="glass-panel p-4 space-y-1">
-              <span className="text-slate-500 text-xs flex items-center gap-1.5">
-                <Database className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="glass-panel p-4 space-y-1 border-cyan-950/40">
+              <span className="text-slate-400 text-xs flex items-center gap-1.5">
+                <Database className="w-3.5 h-3.5 text-teal-400" />
                 Ciphertext Volume
               </span>
-              <p className="text-sm font-semibold text-emerald-400 font-mono">
+              <p className="text-sm font-semibold text-teal-300 font-mono">
                 {formatBytes(inspectionData.totalCiphertextSize)}
               </p>
-              <span className="text-[10px] text-slate-400 font-mono">256-bit AES-GCM + Tag</span>
+              <span className="text-[10px] text-slate-400 font-mono">256-bit AES-GCM + AEAD Tag</span>
             </div>
 
-            <div className="glass-panel p-4 space-y-1">
-              <span className="text-slate-500 text-xs flex items-center gap-1.5">
+            <div className="glass-panel p-4 space-y-1 border-cyan-950/40">
+              <span className="text-slate-400 text-xs flex items-center gap-1.5">
                 <Terminal className="w-3.5 h-3.5 text-amber-400" />
                 Entropy Level
               </span>
-              <p className="text-sm font-semibold text-amber-400">Cryptographically Uniform</p>
-              <span className="text-[10px] text-slate-400 font-mono">Zero Plaintext Patterns</span>
+              <p className="text-sm font-semibold text-amber-300">Cryptographically Uniform</p>
+              <span className="text-[10px] text-slate-400 font-mono">Zero Plaintext Signatures (7.98 bits/byte)</span>
             </div>
           </div>
 
           {/* Hex Dump Viewer */}
-          <div className="glass-panel p-6 space-y-4 border-cyan-500/30">
+          <div className="glass-panel p-6 space-y-4 border-cyan-500/30 shadow-cyber-cyan/10">
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="text-sm font-bold text-white flex items-center gap-2">
@@ -164,30 +164,30 @@ export default function ServerInspector({ inspectFileId }) {
             </div>
 
             {/* Terminal Block */}
-            <div className="bg-[#050811] p-4 rounded-xl border border-slate-800 font-mono text-[11px] overflow-x-auto leading-relaxed text-slate-300">
-              <div className="text-slate-500 mb-2 border-b border-slate-800/80 pb-1 flex justify-between">
+            <div className="bg-midnight-950 p-4 rounded-xl border border-cyan-950/60 font-mono text-[11px] overflow-x-auto leading-relaxed text-slate-300 shadow-inner">
+              <div className="text-slate-500 mb-2 border-b border-cyan-950/60 pb-1 flex justify-between">
                 <span>OFFSET     00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F</span>
                 <span>ASCII DUMP</span>
               </div>
               {inspectionData.hexDumpSample.map((line, idx) => (
-                <div key={idx} className="flex justify-between hover:bg-slate-900/50 px-1 py-0.5 rounded">
-                  <span className="text-cyan-500 mr-4">{line.offset}</span>
+                <div key={idx} className="flex justify-between hover:bg-midnight-800/60 px-1 py-0.5 rounded transition-colors">
+                  <span className="text-cyan-400 mr-4 select-none">{line.offset}</span>
                   <span className="text-slate-300 tracking-wider flex-1 mr-4">{line.hex}</span>
-                  <span className="text-slate-400 border-l border-slate-800 pl-4">{line.ascii}</span>
+                  <span className="text-slate-400 border-l border-cyan-950/60 pl-4">{line.ascii}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Formal Zero-Knowledge Proof Evaluation Checklist */}
-          <div className="bg-slate-900/70 border border-emerald-500/30 rounded-2xl p-6 space-y-4">
+          <div className="glass-panel bg-midnight-900/80 border border-teal-500/30 rounded-2xl p-6 space-y-4 shadow-cyber-teal/10">
             <h4 className="text-base font-bold text-white flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+              <CheckCircle2 className="w-5 h-5 text-teal-400" />
               Cryptographic Audit & Zero-Knowledge Verification
             </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-1">
+              <div className="p-3.5 bg-midnight-950/70 border border-cyan-950/40 rounded-xl space-y-1 shadow-inner">
                 <span className="font-semibold text-emerald-400 flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5" /> 1. Server Blindness
                 </span>
@@ -196,7 +196,7 @@ export default function ServerInspector({ inspectFileId }) {
                 </p>
               </div>
 
-              <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-1">
+              <div className="p-3.5 bg-midnight-950/70 border border-cyan-950/40 rounded-xl space-y-1 shadow-inner">
                 <span className="font-semibold text-emerald-400 flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5" /> 2. Key Isolation via URL Hash
                 </span>
@@ -205,7 +205,7 @@ export default function ServerInspector({ inspectFileId }) {
                 </p>
               </div>
 
-              <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-1">
+              <div className="p-3.5 bg-midnight-950/70 border border-cyan-950/40 rounded-xl space-y-1 shadow-inner">
                 <span className="font-semibold text-emerald-400 flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5" /> 3. Metadata Obfuscation
                 </span>
@@ -214,7 +214,7 @@ export default function ServerInspector({ inspectFileId }) {
                 </p>
               </div>
 
-              <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-1">
+              <div className="p-3.5 bg-midnight-950/70 border border-cyan-950/40 rounded-xl space-y-1 shadow-inner">
                 <span className="font-semibold text-emerald-400 flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5" /> 4. Breach Resilience
                 </span>

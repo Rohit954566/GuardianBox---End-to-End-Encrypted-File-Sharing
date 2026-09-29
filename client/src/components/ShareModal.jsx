@@ -16,8 +16,8 @@ export default function ShareModal({ shareData, onClose, onSwitchToInspect, onSw
         width: 220,
         margin: 2,
         color: {
-          dark: '#0f172a',
-          light: '#f8fafc'
+          dark: '#0a0f1a',
+          light: '#f0f9ff'
         }
       });
     }
@@ -29,7 +29,6 @@ export default function ShareModal({ shareData, onClose, onSwitchToInspect, onSw
       setCopied(true);
       setTimeout(() => setCopied(false), 3000);
     } catch {
-      // Fallback
       const input = document.createElement('input');
       input.value = fullShareUrl;
       document.body.appendChild(input);
@@ -42,12 +41,12 @@ export default function ShareModal({ shareData, onClose, onSwitchToInspect, onSw
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-      <div className="glass-panel glass-panel-glow max-w-2xl w-full p-6 sm:p-8 space-y-6 relative border-cyan-500/40">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
+      <div className="glass-panel glass-panel-glow max-w-2xl w-full p-6 sm:p-8 space-y-6 relative border-cyan-500/30 shadow-cyber-cyan">
         {/* Header */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400">
+            <div className="w-12 h-12 rounded-xl bg-cyan-600/15 border border-cyan-400/30 flex items-center justify-center text-cyan-400 shadow-cyber-cyan/15">
               <ShieldCheck className="w-7 h-7" />
             </div>
             <div>
@@ -75,7 +74,7 @@ export default function ShareModal({ shareData, onClose, onSwitchToInspect, onSw
             <span className="text-cyan-400 font-mono text-[11px]">Includes Client-Side Decryption Key (#)</span>
           </label>
 
-          <div className="flex items-center gap-2 bg-slate-950/80 border border-cyan-500/30 rounded-xl p-2 focus-within:border-cyan-400 transition-all">
+          <div className="flex items-center gap-2 bg-midnight-900/90 border border-cyan-500/25 rounded-xl p-2 focus-within:border-cyan-400 transition-all shadow-inner">
             <input
               type="text"
               readOnly
@@ -101,33 +100,33 @@ export default function ShareModal({ shareData, onClose, onSwitchToInspect, onSw
           </div>
         </div>
 
-        {/* Cryptographic Architecture Callout: RFC 3986 Hash Fragment */}
-        <div className="bg-slate-900/90 border border-slate-700/60 rounded-xl p-4 space-y-2">
+        {/* RFC 3986 Callout */}
+        <div className="bg-midnight-900/80 border border-cyan-950/50 rounded-xl p-4 space-y-2">
           <div className="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
-            <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
             Why is this Zero-Knowledge? (RFC 3986 Standard)
           </div>
           <p className="text-xs text-slate-300 leading-relaxed">
             Notice the <span className="text-cyan-300 font-mono font-bold">#key=...</span> fragment in your sharing URL.
             Under Internet standard <span className="text-white font-mono">RFC 3986</span>, anything after the <code className="text-cyan-300">#</code> symbol
-            is handled <strong>purely by the browser</strong> and is <strong>never transmitted</strong> in HTTP requests to the server.
+            is processed <strong>purely by the browser</strong> and is <strong>never transmitted</strong> in HTTP requests to the server.
             The server hosts only unreadable random gibberish.
           </p>
         </div>
 
         {/* File Attributes & Expiration Badges */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-          <div className="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
+          <div className="bg-midnight-900/60 border border-slate-800/60 p-3 rounded-xl">
             <span className="text-slate-500 block mb-1">Original File</span>
             <span className="font-semibold text-slate-200 truncate block">{shareData.fileName}</span>
           </div>
 
-          <div className="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
+          <div className="bg-midnight-900/60 border border-slate-800/60 p-3 rounded-xl">
             <span className="text-slate-500 block mb-1">Encrypted Size</span>
             <span className="font-semibold text-cyan-400 font-mono">{formatBytes(shareData.fileSize)}</span>
           </div>
 
-          <div className="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
+          <div className="bg-midnight-900/60 border border-slate-800/60 p-3 rounded-xl">
             <span className="text-slate-500 block mb-1 flex items-center gap-1">
               <Clock className="w-3 h-3 text-amber-400" />
               Expires In
@@ -135,7 +134,7 @@ export default function ShareModal({ shareData, onClose, onSwitchToInspect, onSw
             <span className="font-semibold text-amber-400">{shareData.expiresInHours} Hours</span>
           </div>
 
-          <div className="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
+          <div className="bg-midnight-900/60 border border-slate-800/60 p-3 rounded-xl">
             <span className="text-slate-500 block mb-1 flex items-center gap-1">
               <Flame className="w-3 h-3 text-rose-400" />
               Download Limit
@@ -146,18 +145,18 @@ export default function ShareModal({ shareData, onClose, onSwitchToInspect, onSw
           </div>
         </div>
 
-        {/* QR Code Toggle / Display */}
+        {/* QR Code Display */}
         {showQr && (
-          <div className="flex flex-col items-center justify-center p-4 bg-slate-950 border border-slate-800 rounded-xl space-y-2">
+          <div className="flex flex-col items-center justify-center p-4 bg-midnight-900 border border-cyan-950/40 rounded-xl space-y-2 animate-fadeIn">
             <p className="text-xs text-slate-400 font-medium">Scan to open and decrypt on another device:</p>
-            <div className="p-3 bg-white rounded-xl shadow-lg">
+            <div className="p-3 bg-sky-50 rounded-xl shadow-lg">
               <canvas ref={canvasRef}></canvas>
             </div>
           </div>
         )}
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800/60">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowQr(!showQr)}
@@ -172,7 +171,7 @@ export default function ShareModal({ shareData, onClose, onSwitchToInspect, onSw
                 onClose();
                 onSwitchToInspect(shareData.fileId);
               }}
-              className="btn-secondary text-xs py-2 px-3 text-cyan-300 border-cyan-500/30 hover:border-cyan-400"
+              className="btn-secondary text-xs py-2 px-3 text-cyan-300 border-cyan-500/20 hover:border-cyan-400"
             >
               <Eye className="w-4 h-4" />
               Proof: Inspect Server Blob

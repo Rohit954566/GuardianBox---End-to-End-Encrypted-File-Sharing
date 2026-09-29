@@ -17,8 +17,7 @@ import {
   Eye,
   Copy,
   Check,
-  Zap,
-  Sparkles
+  Zap
 } from 'lucide-react';
 import {
   generateKey,
@@ -238,31 +237,31 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
 
   return (
     <div className="space-y-10 animate-fadeIn">
-      {/* Hero Section with Live Telemetry Badges */}
+      {/* Hero Section */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono shadow-cyber-cyan/20">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/50 border border-cyan-500/30 text-cyan-300 text-xs font-mono shadow-cyber-cyan/20">
           <Zap className="w-3.5 h-3.5 text-cyan-400" />
           <span>Zero-Knowledge Architecture • Web Crypto API Native</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-          Client-Side Encrypted <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500">File Vault</span>
+          Client-Side Encrypted <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400">File Vault</span>
         </h1>
 
         <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
           Files are encrypted directly in your browser using hardware-accelerated <strong className="text-slate-200">AES-256-GCM</strong>.
-          The server only ever sees unreadable encrypted binary noise.
+          The server only ever receives scrambled binary ciphertext.
         </p>
 
-        {/* Live Cryptographic Metrics Strip */}
+        {/* Cryptographic Metrics Strip */}
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-          <span className="badge-cyan text-xs">
+          <span className="badge-violet text-xs">
             <Cpu className="w-3.5 h-3.5" /> Hardware AES-NI
           </span>
           <span className="badge-emerald text-xs">
             <ShieldCheck className="w-3.5 h-3.5" /> 128-Bit AEAD Tag
           </span>
-          <span className="badge-cyan text-xs">
+          <span className="badge-violet text-xs">
             <Key className="w-3.5 h-3.5" /> RFC 3986 Hash Key
           </span>
         </div>
@@ -278,10 +277,10 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
             onClick={() => fileInputRef.current?.click()}
             className={`border-2 border-dashed rounded-2xl p-8 sm:p-10 text-center cursor-pointer transition-all duration-300 ${
               isDragging
-                ? 'border-cyan-400 bg-cyan-500/10 scale-[1.01] shadow-cyber-cyan'
+                ? 'border-cyan-400 bg-cyan-500/8 scale-[1.01] shadow-cyber-cyan'
                 : selectedFile
-                ? 'border-emerald-500/50 bg-emerald-950/20 shadow-cyber-emerald'
-                : 'border-slate-700/80 hover:border-cyan-500/50 hover:bg-slate-900/60'
+                ? 'border-emerald-500/40 bg-emerald-950/15 shadow-cyber-emerald'
+                : 'border-slate-800 hover:border-cyan-500/40 hover:bg-cyan-950/10'
             }`}
           >
             <input
@@ -293,7 +292,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
 
             {selectedFile ? (
               <div className="flex flex-col items-center gap-3 animate-fadeIn">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-400/40 flex items-center justify-center text-emerald-400 shadow-cyber-emerald">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/15 to-teal-500/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 shadow-cyber-emerald">
                   <File className="w-8 h-8" />
                 </div>
                 <div>
@@ -321,7 +320,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
               </div>
             ) : (
               <div className="flex flex-col items-center gap-3 group">
-                <div className="w-16 h-16 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:border-cyan-400/60 transition-all shadow-lg">
+                <div className="w-16 h-16 rounded-2xl bg-slate-900/90 border border-cyan-950/40 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:border-cyan-500/40 transition-all shadow-lg shadow-cyan-950/20">
                   <UploadCloud className="w-8 h-8" />
                 </div>
                 <div>
@@ -339,7 +338,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
           {/* Cryptographic Controls Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
             {/* Key Mode Card */}
-            <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-4 sm:p-5 space-y-3">
+            <div className="bg-midnight-900/70 border border-cyan-950/40 rounded-2xl p-4 sm:p-5 space-y-3">
               <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
                 <Key className="w-3.5 h-3.5 text-cyan-400" />
                 Key Generation Strategy
@@ -351,7 +350,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
                   onClick={() => setKeyMode('random')}
                   className={`p-3 rounded-xl border text-left font-medium transition-all ${
                     keyMode === 'random'
-                      ? 'border-cyan-500 bg-cyan-500/15 text-cyan-300 shadow-cyber-cyan/10'
+                      ? 'border-cyan-500 bg-cyan-600/10 text-cyan-300 shadow-cyber-cyan/15'
                       : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:bg-slate-900 hover:border-slate-700'
                   }`}
                 >
@@ -364,7 +363,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
                   onClick={() => setKeyMode('passphrase')}
                   className={`p-3 rounded-xl border text-left font-medium transition-all ${
                     keyMode === 'passphrase'
-                      ? 'border-cyan-500 bg-cyan-500/15 text-cyan-300 shadow-cyber-cyan/10'
+                      ? 'border-cyan-500 bg-cyan-600/10 text-cyan-300 shadow-cyber-cyan/15'
                       : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:bg-slate-900 hover:border-slate-700'
                   }`}
                 >
@@ -380,7 +379,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
                     placeholder="Enter custom passphrase (min 6 chars)..."
                     value={passphrase}
                     onChange={(e) => setPassphrase(e.target.value)}
-                    className="w-full bg-slate-900 border border-cyan-500/40 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 font-mono"
+                    className="w-full bg-slate-900 border border-cyan-500/30 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 font-mono"
                   />
                   <p className="text-[11px] text-slate-400">
                     Recipient must enter this exact passphrase to decrypt the payload.
@@ -390,7 +389,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
             </div>
 
             {/* Expiration Card */}
-            <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-4 sm:p-5 space-y-3">
+            <div className="bg-midnight-900/70 border border-cyan-950/40 rounded-2xl p-4 sm:p-5 space-y-3">
               <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-amber-400" />
                 Ephemeral Lifecycle (Expiration)
@@ -436,7 +435,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
 
           {/* Interactive Cryptographic Pipeline Visualizer */}
           {isProcessing && (
-            <div className="p-5 bg-slate-950/80 border border-cyan-500/40 rounded-2xl space-y-4 animate-fadeIn">
+            <div className="p-5 bg-midnight-900/80 border border-cyan-500/30 rounded-2xl space-y-4 animate-fadeIn">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-cyan-400 text-xs font-bold font-mono">
                   <Loader2 className="w-4 h-4 animate-spin text-cyan-400" />
@@ -452,9 +451,9 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
                     key={idx}
                     className={`p-2 rounded-lg border text-center transition-all ${
                       idx === activePipelineStep
-                        ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-cyber-cyan/20 scale-[1.02]'
+                        ? 'bg-cyan-600/15 border-cyan-400 text-cyan-300 shadow-cyber-cyan/20 scale-[1.02]'
                         : idx < activePipelineStep
-                        ? 'bg-emerald-950/30 border-emerald-500/40 text-emerald-400'
+                        ? 'bg-emerald-950/25 border-emerald-500/35 text-emerald-400'
                         : 'bg-slate-900/50 border-slate-800 text-slate-600'
                     }`}
                   >
@@ -463,7 +462,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
                 ))}
               </div>
 
-              <p className="text-xs text-cyan-300 font-mono bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+              <p className="text-xs text-cyan-300 font-mono bg-slate-900/80 p-3 rounded-xl border border-cyan-950/60">
                 {cryptoStepText}
               </p>
             </div>
@@ -471,7 +470,7 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
 
           {/* Error Message */}
           {errorMsg && (
-            <div className="p-3.5 bg-rose-950/40 border border-rose-500/40 rounded-xl flex items-center gap-2.5 text-rose-300 text-xs">
+            <div className="p-3.5 bg-rose-950/30 border border-rose-500/30 rounded-xl flex items-center gap-2.5 text-rose-300 text-xs">
               <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
               <span>{errorMsg}</span>
             </div>
@@ -514,12 +513,12 @@ export default function UploadVault({ onUploadSuccess, onSwitchToInspect, onSwit
               </button>
             </div>
 
-            <div className="divide-y divide-slate-800/80">
+            <div className="divide-y divide-slate-800/60">
               {vaultHistory.map((item) => (
                 <div key={item.fileId} className="py-3 flex flex-wrap items-center justify-between gap-3 text-xs">
                   <div className="space-y-0.5">
                     <span className="font-semibold text-slate-200 block truncate max-w-xs">{item.fileName}</span>
-                    <span className="font-mono text-[11px] text-cyan-400/80">{item.fileId}</span>
+                    <span className="font-mono text-[11px] text-cyan-400/70">{item.fileId}</span>
                   </div>
 
                   <div className="flex items-center gap-2">
